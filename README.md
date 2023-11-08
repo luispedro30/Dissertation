@@ -9,7 +9,7 @@
 
 ## Âmbito
 
-Projeto prático de Dissertação do Mestrado em Engenharia Informática da [Escola Superior de Tecnologia e Gestão - P.Porto](https://www.estg.ipp.pt/) no ano letivo 2022/23.
+Projeto prático de Dissertação do Mestrado em Engenharia Informática da [Escola Superior de Tecnologia e Gestão - P.Porto](https://www.estg.ipp.pt/) no ano letivo 2023/24.
 
 ## Documentação
 
