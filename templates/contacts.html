@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/form.css') }}">
+   </head>
+<body>
+  <nav>
+    <div class="navbar">
+      <i class='bx bx-menu'></i>
+      <div class="logo"><a href="#">Machine Learning</a></div>
+      <div class="nav-links">
+        <div class="sidebar-logo">
+          <span class="logo-name">Machine Learning</span>
+          <i class='bx bx-x' ></i>
+        </div>
+        <ul class="links">
+          <li><a href="/">Home</a></li>
+          <li>
+            <a href="#">Data Analysis</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li><a href="/DataAnalysis/Maths">Mathematics</a></li>
+              <li><a href="/DataAnalysis/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Pass or Fail</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li><a href="/PassOrFail/Maths">Mathematics</a></li>
+              <li><a href="/PassOrFail/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Five Level Classification</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li><a href="/FiveLevel/Maths">Mathematics</a></li>
+              <li><a href="/FiveLevel/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Grade Prediction</a>
+            <i class='bx bxs-chevron-down js-arrow arrow '></i>
+            <ul class="js-sub-menu sub-menu">
+                <li><a href="/GradePrediction/Maths">Mathematics</a></li>
+                <li><a href="/GradePrediction/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li><a href="/Contacts">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <form id="contactForm">
+    <label for="name">Name</label>
+    <input type="text" name="Name" required>
+   
+    <label for="email">Email</label>
+    <input type="email" name="Email" required>
+   
+    <label for="message">Message</label>
+    <textarea name="Message" required></textarea>
+   
+    <input type="submit" value="Go!" id="contactGo">
+  </form>
+</body>
+</html>
+ 
