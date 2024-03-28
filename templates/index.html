@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!-- Created By CodingNepal - www.codingnepalweb.com -->
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8">
+   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
+    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<body>
+  <nav>
+    <div class="navbar">
+      <i class='bx bx-menu'></i>
+      <div class="logo"><a href="#">Machine Learning</a></div>
+      <div class="nav-links">
+        <div class="sidebar-logo">
+          <span class="logo-name">Machine Learning</span>
+          <i class='bx bx-x' ></i>
+        </div>
+        <ul class="links">
+          <li><a href="/">Home</a></li>
+          <li><a href="/csv">Csv</a></li>
+          <li>
+            <a href="#">Data Analysis</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li><a href="/DataAnalysis/Maths">Mathematics</a></li>
+              <li><a href="/DataAnalysis/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Pass or Fail</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li><a href="/PassOrFail/Maths">Mathematics</a></li>
+              <li><a href="/PassOrFail/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Five Level Classification</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li><a href="/FiveLevel/Maths">Mathematics</a></li>
+              <li><a href="/FiveLevel/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Grade Prediction</a>
+            <i class='bx bxs-chevron-down js-arrow arrow '></i>
+            <ul class="js-sub-menu sub-menu">
+                <li><a href="/GradePrediction/Maths">Mathematics</a></li>
+                <li><a href="/GradePrediction/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li><a href="/Contacts">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <h1>Student Performance</h1>
+  <p>Although the educational level of the Portuguese population has improved in the last decades, the statistics
+    keep Portugal at Europe’s tail end due to its high student failure rates. In particular, lack of success in the
+    core classes of Mathematics and the Portuguese language is extremely serious.</p>
+  <p>Feel free to explore the rest of the website by clicking the links below.</p>
+  <ul class = "Linksinside">
+    <li class = Linksinside><a href="/PassOrFail/Maths">Maths Binary Prediction</a></li>
+    <li class = Linksinside><a href="/PassOrFail/Portuguese">Portuguese Binary Prediction</a></li>
+    <li class = Linksinside><a href="/FiveLevel/Maths">Maths Five Levels Prediction</a></li>
+    <li class = Linksinside><a href="/FiveLevel/Portuguese">Portuguese Five Levels Prediction</a></li>
+    <li class = Linksinside><a href="/GradePrediction/Maths">Maths Grade Prediction</a></li>
+    <li class = Linksinside><a href="/GradePrediction/Portuguese">Portuguese Grade Prediction</a></li>
+    <li class = Linksinside><a href="/Contacts">Contact Us</a></li>
+  </ul>
+</body>
+</html>
