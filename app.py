@@ -19,25 +19,20 @@ os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 app.secret_key = 'This is your secret key to utilize session in Flask'
 
-model_math_binary = pickle.load(open('Models/Maths/Binary/LinearRegression.pkl', 'rb'))
-model_por_binary = pickle.load(open('Models/Portuguese/Binary/LinearRegression.pkl', 'rb'))
-model_math_five_levels = pickle.load(open('Models/Maths/FiveLevels/LinearRegression.pkl', 'rb'))
-model_por_five_levels = pickle.load(open('Models/Portuguese/FiveLevels/LinearRegression.pkl', 'rb'))
-model_math_grade = pickle.load(open('Models/Maths/Grade/LinearRegression.pkl', 'rb'))
-model_por_grade = pickle.load(open('Models/Portuguese/Grade/LinearRegression.pkl', 'rb'))
-model_rfe_ensemble = pickle.load(open('Models/XGBoost.pkl', 'rb'))
+
+model_rfe_ensemble = pickle.load(open('Models/XGBoostFeatureSelection/XGBoost.pkl', 'rb'))
 
 @app.route('/', methods=['GET', 'POST'])
 def hello():
     return render_template('index.html')
 
-@app.route('/DataAnalysis/Maths', methods=['GET', 'POST'])
+@app.route('/DataAnalysis/Geral', methods=['GET', 'POST'])
 def DataAnalysisMath():
-    return render_template('DataAnalysisMath.html')
+    return render_template('DataAnalysisGeral.html')
 
-@app.route('/DataAnalysis/Portuguese', methods=['GET', 'POST'])
+@app.route('/DataAnalysis/Distribution', methods=['GET', 'POST'])
 def DataAnalysisPort():
-    return render_template('DataAnalysisPort.html')
+    return render_template('DataAnalysisDistribution.html')
 
 @app.route('/Contacts', methods=['GET', 'POST'])
 def contacts():
@@ -112,8 +107,11 @@ def upload_and_show_data():
             # Read the CSV file
             df = pd.read_csv(file_path)
             
-            # Get the first row of the DataFrame (excluding the header)
-            data = df.iloc[0]
+            # Get the feature names from the model
+            selected_features = model_rfe_ensemble.get_booster().feature_names
+            
+            # Extract data for selected features from the first row of the DataFrame
+            data = df.loc[0, selected_features] 
             
             # Convert the data to variables
             variables = {col: value for col, value in data.items()}
@@ -136,7 +134,6 @@ def upload_and_show_data():
     
     # Handle GET request or failed POST request
     return render_template("CsvImport.html")
-
 
      
 
