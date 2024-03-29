@@ -1,0 +1,7 @@
+flask
+pandas
+scikit-learn
+scipy
+numpy
+Werkzeug
+xgboost
