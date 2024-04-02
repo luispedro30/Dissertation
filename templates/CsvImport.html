@@ -26,7 +26,7 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     
-    h1 {
+    h1, h2 {
       text-align: center;
       margin-bottom: 20px;
       color: #333;
@@ -66,7 +66,7 @@
     .btn:hover {
       background-color: #0056b3;
     }
-    
+
     /* Style for the uploaded data table */
     .uploaded-data {
       margin-top: 20px;
@@ -96,6 +96,11 @@
     .prediction-phrase {
       font-weight: bold;
       color: #007bff;
+    }
+
+    /* Additional styles */
+    .minimized {
+      display: none;
     }
 
   </style>
@@ -157,9 +162,33 @@
         <label for="csv-file">Choose CSV file:</label>
         <input type="file" id="csv-file" name="file" accept=".csv" required>
       </div>
+      <!-- Form for selecting the model -->
+      <div class="form-group">
+        <label for="model">Select Model:</label>
+        <select id="model" name="model">
+          <option value="svm">SVM</option>
+          <option value="dt">Decision Tree</option>
+          <option value="adaboost">AdaBoost</option>
+          <option value="knn">KNN</option>
+          <option value="nb">Naive Bayes</option>
+          <option value="xgboost">XG Boost</option>
+          <option value="rf">Random Forest</option>
+        </select>
+      </div>
       <button type="submit" class="btn">Upload</button>
     </form>
     <hr>
+    <h2>Model Parameters</h2>
+    <button class="minimize-btn" onclick="toggleModelParams()">Minimize Model Parameters</button>
+    <ul class="model-parameters">
+      {% if parameters %}
+        {% for key, value in parameters.items() %}
+          <li>{{ key | lower }}: {{ value }}</li>
+        {% endfor %}
+      {% else %}
+        <li>No parameters available</li>
+      {% endif %}
+    </ul>
     <h2>Uploaded CSV Data</h2>
     <div class="uploaded-data" style="display: block;">
       {% if variables %}
@@ -190,6 +219,11 @@
 
   <!-- JavaScript for toggle button functionality -->
   <script>
+    function toggleModelParams() {
+      var modelParams = document.querySelector('.model-parameters');
+      modelParams.classList.toggle('minimized');
+    }
+
     function toggleUploadedData() {
       var uploadedData = document.querySelector('.uploaded-data');
       var minimizeBtn = document.querySelector('.minimize-btn');
@@ -202,5 +236,8 @@
       }
     }
   </script>
+  <footer>
+    <p>&copy; 2024 Machine Learning. All rights reserved.</p>
+  </footer>
 </body>
 </html>

@@ -1,29 +1,91 @@
-from flask import Flask, render_template, request, session
-import pandas as pd
-import pickle
-import os
-from os.path import join
-from werkzeug.utils import secure_filename
-
-
-
-UPLOAD_FOLDER = os.path.join('staticFiles', 'uploads')
-ALLOWED_EXTENSIONS = {'csv'}
+from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for
+from flask_sqlalchemy import SQLAlchemy
+from flask_login import LoginManager, UserMixin, login_user, login_required, current_user
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
-app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Max file size: 16MB
 
-# Ensure the upload folder exists
-os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://admin:postgres123@localhost:5433/ml"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SECRET_KEY'] = 'your_secret_key_here'  # Secret key for session management
 
-app.secret_key = 'This is your secret key to utilize session in Flask'
+db = SQLAlchemy(app)
+login_manager = LoginManager(app)
+login_manager.login_view = 'login'  # Specify the login route
+login_manager.login_message = 'Please log in to access this page.'
+
+# Define the User model with a custom table name
+class User(UserMixin, db.Model):
+    __tablename__ = 'users'  # Specify the custom table name
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(500), unique=True, nullable=False)
+    email = db.Column(db.String(500), unique=True, nullable=False)
+    password_hash = db.Column(db.String(500), nullable=False)
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
 
-model_rfe_ensemble = pickle.load(open('Models/XGBoostFeatureSelection/XGBoost.pkl', 'rb'))
+# User loader function for Flask-Login
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
+
+# Registration route
+@app.route('/register', methods=['POST'])
+def register_user():
+    data = request.get_json()
+    username = data.get('username')
+    email = data.get('email')
+    password = data.get('password')
+
+    # Check if username or email already exists
+    existing_user = User.query.filter_by(username=username).first()
+    existing_email = User.query.filter_by(email=email).first()
+    if existing_user:
+        return make_response(jsonify({'error': 'Username already exists'}), 400)
+    if existing_email:
+        return make_response(jsonify({'error': 'Email already exists'}), 400)
+
+    # Hash the password before storing it
+    hashed_password = generate_password_hash(password)
+
+    # Create a new user instance
+    new_user = User(username=username, email=email, password_hash=hashed_password)
+
+    # Add the new user to the database
+    db.session.add(new_user)
+    db.session.commit()
+
+    return make_response(jsonify({'message': 'User registered successfully'}), 201)
+
+# Login route
+@app.route('/login', methods=['POST'])
+def login():
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
+    user = User.query.filter_by(username=username).first()
+
+    if user and user.check_password(password):
+        login_user(user)  # Log in the user
+        return jsonify({'success': True, 'message': 'Login successful'})
+    else:
+        return jsonify({'success': False, 'message': 'Invalid username or password'})
+
+
 
 @app.route('/', methods=['GET', 'POST'])
 def hello():
+    return render_template('registerlogin.html')
+
+@app.route('/index', methods=['GET', 'POST'])
+@login_required
+def index():
     return render_template('index.html')
 
 @app.route('/DataAnalysis/Geral', methods=['GET', 'POST'])
@@ -43,58 +105,9 @@ def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'csv'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-"""
-@app.route('/csv', methods=['GET', 'POST'])
-def uploadFile():
-    if request.method == 'POST':
-        f = request.files.get('file')
-        if f and allowed_file(f.filename):
-            data_filename = secure_filename(f.filename)
-            file_path = os.path.join(app.config['UPLOAD_FOLDER'], data_filename)
-            f.save(file_path)
-            session['uploaded_data_file_path'] = file_path
-            
-            # Read the CSV file
-            df = pd.read_csv(file_path)
-            
-            # Get the first row of the DataFrame (excluding the header)
-            data = df.iloc[0]
-            
-            # Convert the data to variables
-            variables = {col: value for col, value in data.items()}
-            
-            # Make prediction using the model and variables
-            # Note: You need to preprocess the data appropriately before making predictions
-            # For example, if the model expects numerical inputs, convert the variables to numerical format
-            
-            # Assuming you have preprocessed the variables appropriately and stored them in X_pred
-            X_pred = pd.DataFrame(data).transpose()  # Convert data to DataFrame and transpose it
-            prediction = model_rfe_ensemble.predict(X_pred)
-            
-            # Optionally, you can store the prediction in the session
-            session['prediction'] = prediction.tolist()
-
-            print(session['prediction'])
-            
-            return render_template('CsvImport2.html', variables=variables, prediction=prediction)
-    
-    return render_template("CsvImport.html")
-
-
-@app.route('/csv/show_data')
-def showData():
-    data_file_path = session.get('uploaded_data_file_path', None)
-    if data_file_path:
-        uploaded_df = pd.read_csv(data_file_path, encoding='unicode_escape')
-        uploaded_df_html = uploaded_df.to_html()
-        return render_template('show_csv_data.html', data_var=uploaded_df_html)
-    return "No data file uploaded."
-
-if __name__ == '__main__':
-    app.run(debug=True)
-"""
 @app.route('/csv', methods=['GET', 'POST'])
 def upload_and_show_data():
+    parameters = None  # Default value for parameters
     if request.method == 'POST':
         # Handle file upload
         f = request.files.get('file')
@@ -103,13 +116,38 @@ def upload_and_show_data():
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], data_filename)
             f.save(file_path)
             session['uploaded_data_file_path'] = file_path
-            
+            model = None
+            selected_model = request.form.get('model')
+
+            if selected_model == 'svm':
+                model = model_all_data_normalized_svm
+            elif selected_model == 'nb':
+                model = model_all_data_normalized_nb
+            elif selected_model == 'knn':
+                model = model_all_data_normalized_knn
+            elif selected_model == 'adaboost':
+                model = model_all_data_normalized_ada_boost
+            elif selected_model == 'dt':
+                model = model_all_data_normalized_dt
+            elif selected_model == 'xgboost':
+                model = model_all_data_normalized_xgboost
+            elif selected_model == 'rf':
+                model = model_all_data_normalized_rf
             # Read the CSV file
             df = pd.read_csv(file_path)
             
             # Get the feature names from the model
-            selected_features = model_rfe_ensemble.get_booster().feature_names
+            feature_names_df = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalized/SVM_feature_names.csv")
+
+            # Extract the feature names from the DataFrame
+
+            print(feature_names_df)
+            selected_features = feature_names_df['Feature Names'].tolist()
+            print(selected_features)
+            #selected_features = model.get_booster().feature_names
             
+            parameters = model.get_params()
+
             # Extract data for selected features from the first row of the DataFrame
             data = df.loc[0, selected_features] 
             
@@ -122,20 +160,20 @@ def upload_and_show_data():
             
             # Assuming you have preprocessed the variables appropriately and stored them in X_pred
             X_pred = pd.DataFrame(data).transpose()  # Convert data to DataFrame and transpose it
-            prediction = model_rfe_ensemble.predict(X_pred)
+            prediction = model.predict(X_pred)
             
             # Optionally, you can store the prediction in the session
             session['prediction'] = prediction.tolist()
 
             print(session['prediction'])
-            
-            # Render the same HTML template with variables and prediction
-            return render_template('CsvImport.html', variables=variables, prediction=prediction)
+            print(prediction)
+
+            # Render the HTML template with variables, prediction, and model parameters
+            return render_template('CsvImport.html', variables=variables, prediction=prediction, parameters=parameters, selected_model=selected_model)
     
     # Handle GET request or failed POST request
-    return render_template("CsvImport.html")
+    return render_template("CsvImport.html", parameters=parameters)
 
-     
 
 @app.route('/FiveLevel/Maths', methods = ['GET', 'POST'])
 def FiveLevelsMaths():
@@ -1380,4 +1418,4 @@ def passFailMaths():
 
     return render_template('gradePrediction.html')
 if __name__ == "__main__":
-    app.run(host = '0.0.0.0', port = '8080')
+    app.run(host='0.0.0.0', port='8080')
