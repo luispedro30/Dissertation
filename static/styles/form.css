@@ -330,3 +330,15 @@ h1{
   flex-direction: column;
   justify-content: center;
 }
+
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px 0; /* Adjusted padding */
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 14px; /* Adjusted font size */
+}

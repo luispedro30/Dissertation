@@ -369,3 +369,20 @@ input[type="file"] {
   display: inline-block;
   margin-top: 10px;
 }
+
+footer {
+  background-color: black;
+  color: white;
+  text-align: center;
+  padding: 10px 0; /* Adjusted padding */
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  font-size: 14px; /* Adjusted font size */
+}
+
+form {
+  margin: 0 auto; /* This will horizontally center the form */
+  width: 400px; /* Adjust the width as needed */
+}

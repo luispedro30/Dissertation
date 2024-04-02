@@ -1,0 +1,47 @@
+version: '3.8'
+name: ml-app
+services:
+  bd-ml:
+    image: postgres:16
+    container_name: bd-ml
+    environment:
+      - POSTGRES_PASSWORD=postgres123
+      - POSTGRES_USER=admin
+      - POSTGRES_DB=bd
+    ports:
+      - "5433:5432"
+    networks:
+      - ml-app
+    volumes:
+      - "D:/Dissertation/Data/db:/var/lib/postgresql/data"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: 8220025@estg.ipp.pt
+      PGADMIN_DEFAULT_PASSWORD: pgadmin123
+    networks:
+      - ml-app
+    ports:
+      - "9999:80"
+
+  flask-backend:
+    build: D:/Dissertation
+    container_name: flask-backend
+    ports:
+      - "5000:8080"
+    depends_on:
+      - bd-ml
+    environment:
+      - DB_URL=postgresql://postgres:postgres@bd-ml:5432/postgres
+    volumes:
+      - "D:/Dissertation/Data/backend:/app/backend"
+    networks:
+      - ml-app
+
+networks:
+  ml-app:
+
+volumes:
+  db-volume:
