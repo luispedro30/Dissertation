@@ -1,34 +1,30 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <title>User Registration and Login</title>
+<head>
     <meta charset="UTF-8">
-   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/style.css') }}">
-    <link href='https://unpkg.com/boxicons@2.0.7/css/boxicons.min.css' rel='stylesheet'>
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   </head>
+    <title>User Registration and Login</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/loginregister.css') }}">
+</head>
 <body>
-    <h1>User Registration</h1>
-    <form id="registerForm">
-        <label for="username">Username:</label><br>
-        <input type="text" id="username" name="username" required><br>
-        <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" required><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" required><br><br>
-        <button type="submit">Register</button>
-    </form>
+    <div class="main">
+        <h1 class="sign">User Registration</h1>
+        <form id="registerForm" class="form1">
+            <input type="text" id="username" name="username" placeholder="Username" required class="un"><br>
+            <input type="email" id="email" name="email" placeholder="Email" required class="un"><br>
+            <input type="password" id="password" name="password" placeholder="Password" required class="pass"><br>
+            <button type="submit" class="submit">Register</button>
+        </form>
 
-    <hr>
+        <hr>
 
-    <h1>User Login</h1>
-    <form id="loginForm">
-        <label for="loginUsername">Username:</label><br>
-        <input type="text" id="loginUsername" name="username" required><br>
-        <label for="loginPassword">Password:</label><br>
-        <input type="password" id="loginPassword" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
+        <h1 class="sign">User Login</h1>
+        <form id="loginForm" class="form1">
+            <input type="text" id="loginUsername" name="username" placeholder="Username" required class="un"><br>
+            <input type="password" id="loginPassword" name="password" placeholder="Password" required class="pass"><br>
+            <button type="submit" class="submit">Login</button>
+        </form>
+    </div>
 
     <script>
         document.getElementById('registerForm').addEventListener('submit', function(event) {
@@ -69,6 +65,5 @@
         });
 
     </script>
-    
 </body>
 </html>

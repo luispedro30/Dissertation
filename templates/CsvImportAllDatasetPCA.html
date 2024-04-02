@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Upload CSV and Get Prediction</title>
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+  <style>
+    /* CSS styles from the first HTML file */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    
+    .container {
+      max-width: 800px; /* Increased width for the container */
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+    
+    form {
+      margin-bottom: 20px;
+    }
+    
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    select, input[type="file"], button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    /* Style for prediction phrase */
+    .prediction-phrase {
+      font-weight: bold;
+      color: #007bff;
+      text-align: center;
+    }
+
+    /* Additional styles */
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="navbar">
+      <i class='bx bx-menu'></i>
+      <div class="logo"><a href="#">Machine Learning</a></div>
+      <div class="nav-links">
+        <div class="sidebar-logo">
+          <span class="logo-name">Machine Learning</span>
+          <i class='bx bx-x' ></i>
+        </div>
+        <ul class="links">
+          <li><a href="/index">Home</a></li>
+          <li>
+            <a href="#">Data Analysis</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li><a href="/DataAnalysis/Geral">Geral</a></li>
+              <li><a href="/DataAnalysis/Distribution">Distribution</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">All Dataset</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li><a href="/AllDataset/AllDatasetNormalized">All Dataset Normalized</a></li>
+              <li><a href="/AllDataset/AllDatasetNormalizedCorrelated">All Dataset Normalized and Correlated</a></li>
+              <li><a href="/AllDataset/AllDatasetPCA">All Dataset with Pca</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Pass or Fail</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li><a href="/PassOrFail/Maths">Mathematics</a></li>
+              <li><a href="/PassOrFail/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Five Level Classification</a>
+            <i class='bx bxs-chevron-down htmlcss-arrow arrow'></i>
+            <ul class="htmlCss-sub-menu sub-menu">
+              <li><a href="/FiveLevel/Maths">Mathematics</a></li>
+              <li><a href="/FiveLevel/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#">Grade Prediction</a>
+            <i class='bx bxs-chevron-down js-arrow arrow'></i>
+            <ul class="js-sub-menu sub-menu">
+              <li><a href="/GradePrediction/Maths">Mathematics</a></li>
+              <li><a href="/GradePrediction/Portuguese">Portuguese</a></li>
+            </ul>
+          </li>
+          <li><a href="/Contacts">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <div class="container">
+    <h1>Upload CSV and Get Prediction</h1>
+    <form method="POST" enctype="multipart/form-data" action="/AllDataset/AllDatasetPCA">
+      <label for="model">Select Model:</label>
+      <select id="model" name="model">
+        <option value="svm">SVM</option>
+        <option value="dt">Decision Tree</option>
+        <option value="adaboost">AdaBoost</option>
+        <option value="knn">KNN</option>
+        <option value="nb">Naive Bayes</option>
+        <option value="xgboost">XG Boost</option>
+        <option value="rf">Random Forest</option>
+      </select>
+      <label for="csv-file">Choose CSV file:</label>
+      <input type="file" id="csv-file" name="file" accept=".csv" required>
+      <button type="submit">Upload</button>
+    </form>
+    
+    {% if prediction is defined %}
+    <div class="prediction">
+      <h2>Prediction</h2>
+      <p class="prediction-phrase">
+        {% if prediction == 1 %}
+          The subject has Parkinson's disease.
+        {% elif prediction == 0 %}
+          The subject does not have Parkinson's disease.
+        {% endif %}
+      </p>
+    </div>
+    {% endif %}
+  </div>
+  <footer>
+    <p>&copy; 2024 Machine Learning. All rights reserved.</p>
+  </footer>
+</body>
+</html>
