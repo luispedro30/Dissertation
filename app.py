@@ -1,13 +1,28 @@
-from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for
+from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+import pandas as pd
+import pickle
+import os
+import joblib
+from os.path import join
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
+
+
+UPLOAD_FOLDER = os.path.join('staticFiles', 'uploads')
+ALLOWED_EXTENSIONS = {'csv'}
 
 app.config['SQLALCHEMY_DATABASE_URI'] = "postgresql://admin:postgres123@localhost:5433/ml"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SECRET_KEY'] = 'your_secret_key_here'  # Secret key for session management
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # Max file size: 16MB
+
+# Ensure the upload folder exists
+os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
@@ -33,7 +48,8 @@ class User(UserMixin, db.Model):
 # User loader function for Flask-Login
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return db.session.get(User, user_id)
+
 
 # Registration route
 @app.route('/register', methods=['POST'])
@@ -44,8 +60,9 @@ def register_user():
     password = data.get('password')
 
     # Check if username or email already exists
-    existing_user = User.query.filter_by(username=username).first()
-    existing_email = User.query.filter_by(email=email).first()
+    existing_user = db.session.query(User).filter_by(username=username).first()
+    existing_email = db.session.query(User).filter_by(email=email).first()
+
     if existing_user:
         return make_response(jsonify({'error': 'Username already exists'}), 400)
     if existing_email:
@@ -69,7 +86,9 @@ def login():
     data = request.get_json()
     username = data.get('username')
     password = data.get('password')
-    user = User.query.filter_by(username=username).first()
+    user = db.session.query(User).filter_by(username=username).first()
+
+
 
     if user and user.check_password(password):
         login_user(user)  # Log in the user
@@ -105,7 +124,8 @@ def allowed_file(filename):
     ALLOWED_EXTENSIONS = {'csv'}
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/csv', methods=['GET', 'POST'])
+
+@app.route('/AllDataset/AllDatasetNormalized', methods=['GET', 'POST'])
 def upload_and_show_data():
     parameters = None  # Default value for parameters
     if request.method == 'POST':
@@ -119,34 +139,47 @@ def upload_and_show_data():
             model = None
             selected_model = request.form.get('model')
 
+            print(selected_model)
+
             if selected_model == 'svm':
-                model = model_all_data_normalized_svm
+                model = joblib.load('Models/AllDatasetNormalized/SVM.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalized/SVM_feature_names.csv")
+                print("aqui")
             elif selected_model == 'nb':
-                model = model_all_data_normalized_nb
+                model = joblib.load('Models/AllDatasetNormalized/Naive Bayes.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalized/Naive Bayes_feature_names.csv")
             elif selected_model == 'knn':
-                model = model_all_data_normalized_knn
+                model = joblib.load('Models/AllDatasetNormalized/KNN.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalized/kNN_feature_names.csv")
             elif selected_model == 'adaboost':
-                model = model_all_data_normalized_ada_boost
+                model = joblib.load('Models/AllDatasetNormalized/AdaBoost.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalized/AdaBoost_feature_names.csv")
             elif selected_model == 'dt':
-                model = model_all_data_normalized_dt
+                model = joblib.load('Models/AllDatasetNormalized/Decision Tree.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalized/Decision Tree_feature_names.csv")
             elif selected_model == 'xgboost':
-                model = model_all_data_normalized_xgboost
+                model = joblib.load('Models/AllDatasetNormalized/XGBoost.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalized/XGBoost_feature_names.csv")
             elif selected_model == 'rf':
-                model = model_all_data_normalized_rf
+                model = joblib.load('Models/AllDatasetNormalized/Random Forest.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalized/Random Forest_feature_names.csv")
+            
             # Read the CSV file
             df = pd.read_csv(file_path)
             
             # Get the feature names from the model
-            feature_names_df = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalized/SVM_feature_names.csv")
-
             # Extract the feature names from the DataFrame
 
-            print(feature_names_df)
-            selected_features = feature_names_df['Feature Names'].tolist()
+            print(feature_names)
+            selected_features = feature_names['Feature Names'].tolist()
             print(selected_features)
             #selected_features = model.get_booster().feature_names
             
-            parameters = model.get_params()
+            if hasattr(model, 'get_params'):
+                parameters = model.get_params()
+                print("parametros")
+            else:
+                parameters = None  # or any other way to handle this case
 
             # Extract data for selected features from the first row of the DataFrame
             data = df.loc[0, selected_features] 
@@ -169,10 +202,169 @@ def upload_and_show_data():
             print(prediction)
 
             # Render the HTML template with variables, prediction, and model parameters
-            return render_template('CsvImport.html', variables=variables, prediction=prediction, parameters=parameters, selected_model=selected_model)
+            return render_template('CsvImportAllDatasetNormalized.html', variables=variables, prediction=prediction, parameters=parameters, selected_model=selected_model)
     
     # Handle GET request or failed POST request
-    return render_template("CsvImport.html", parameters=parameters)
+    return render_template("CsvImportAllDatasetNormalized.html", parameters=parameters)
+
+@app.route('/AllDataset/AllDatasetNormalizedCorrelated', methods=['GET', 'POST'])
+def upload_and_show_data_normalized_correlated():
+    parameters = None  # Default value for parameters
+    if request.method == 'POST':
+        # Handle file upload
+        f = request.files.get('file')
+        if f and allowed_file(f.filename):
+            data_filename = secure_filename(f.filename)
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], data_filename)
+            f.save(file_path)
+            session['uploaded_data_file_path'] = file_path
+            model = None
+            selected_model = request.form.get('model')
+
+            print(selected_model)
+
+            if selected_model == 'svm':
+                model = joblib.load('Models/AllDatasetNormalizedCorrelated/SVM.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalizedCorrelated/SVM_feature_names.csv")
+                print("aqui")
+            elif selected_model == 'nb':
+                model = joblib.load('Models/AllDatasetNormalizedCorrelated/Naive Bayes.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalizedCorrelated/Naive Bayes_feature_names.csv")
+            elif selected_model == 'knn':
+                model = joblib.load('Models/AllDatasetNormalizedCorrelated/KNN.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalizedCorrelated/kNN_feature_names.csv")
+            elif selected_model == 'adaboost':
+                model = joblib.load('Models/AllDatasetNormalizedCorrelated/AdaBoost.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalizedCorrelated/AdaBoost_feature_names.csv")
+            elif selected_model == 'dt':
+                model = joblib.load('Models/AllDatasetNormalizedCorrelated/Decision Tree.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalizedCorrelated/Decision Tree_feature_names.csv")
+            elif selected_model == 'xgboost':
+                model = joblib.load('Models/AllDatasetNormalizedCorrelated/XGBoost.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalizedCorrelated/XGBoost_feature_names.csv")
+            elif selected_model == 'rf':
+                model = joblib.load('Models/AllDatasetNormalizedCorrelated/Random Forest.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetNormalizedCorrelated/Random Forest_feature_names.csv")
+            
+            # Read the CSV file
+            df = pd.read_csv(file_path)
+            
+            # Get the feature names from the model
+            # Extract the feature names from the DataFrame
+
+            print(feature_names)
+            selected_features = feature_names['Feature Names'].tolist()
+            print(selected_features)
+            #selected_features = model.get_booster().feature_names
+            
+            if hasattr(model, 'get_params'):
+                parameters = model.get_params()
+                print("parametros")
+            else:
+                parameters = None  # or any other way to handle this case
+
+            # Extract data for selected features from the first row of the DataFrame
+            data = df.loc[0, selected_features] 
+            print(data)
+            
+            # Convert the data to variables
+            variables = {col: value for col, value in data.items()}
+            
+            # Make prediction using the model and variables
+            # Note: You need to preprocess the data appropriately before making predictions
+            # For example, if the model expects numerical inputs, convert the variables to numerical format
+            
+            # Assuming you have preprocessed the variables appropriately and stored them in X_pred
+            X_pred = pd.DataFrame(data).transpose()  # Convert data to DataFrame and transpose it
+            prediction = model.predict(X_pred)
+            
+            # Optionally, you can store the prediction in the session
+            session['prediction'] = prediction.tolist()
+
+            print(session['prediction'])
+            print(prediction)
+
+            # Render the HTML template with variables, prediction, and model parameters
+            return render_template('CsvImportAllDatasetNormalizedCorrelated.html', variables=variables, prediction=prediction, parameters=parameters, selected_model=selected_model)
+
+    return render_template("CsvImportAllDatasetNormalizedCorrelated.html", parameters=parameters)
+   
+@app.route('/AllDataset/AllDatasetPCA', methods=['GET', 'POST'])
+def upload_and_show_data_pca():
+    parameters = None  # Default value for parameters
+    if request.method == 'POST':
+        # Handle file upload
+        f = request.files.get('file')
+        if f and allowed_file(f.filename):
+            data_filename = secure_filename(f.filename)
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], data_filename)
+            f.save(file_path)
+            session['uploaded_data_file_path'] = file_path
+            model = None
+            selected_model = request.form.get('model')
+
+            print(selected_model)
+
+            if selected_model == 'svm':
+                model = joblib.load('Models/AllDatasetPCA/SVM.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetPCA/SVM_feature_names.csv")
+                print("aqui")
+            elif selected_model == 'nb':
+                model = joblib.load('Models/AllDatasetPCA/Naive Bayes.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetPCA/Naive Bayes_feature_names.csv")
+            elif selected_model == 'knn':
+                model = joblib.load('Models/AllDatasetPCA/KNN.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetPCA/kNN_feature_names.csv")
+            elif selected_model == 'adaboost':
+                model = joblib.load('Models/AllDatasetPCA/AdaBoost.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetPCA/AdaBoost_feature_names.csv")
+            elif selected_model == 'dt':
+                model = joblib.load('Models/AllDatasetPCA/Decision Tree.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetPCA/Decision Tree_feature_names.csv")
+            elif selected_model == 'xgboost':
+                model = joblib.load('Models/AllDatasetPCA/XGBoost.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetPCA/XGBoost_feature_names.csv")
+            elif selected_model == 'rf':
+                model = joblib.load('Models/AllDatasetPCA/Random Forest.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetPCA/Random Forest_feature_names.csv")
+            
+            # Read the CSV file
+            df = pd.read_csv(file_path)
+            
+            # Get the feature names from the model
+            # Extract the feature names from the DataFrame
+
+            pca = joblib.load('Models/AllDatasetPCA/PCA.joblib')
+            print("Oi")
+
+            # Step 2: Transform new data using the loaded PCA object
+            new_data_pca = pca.transform(df)
+            print("Oi2")
+
+            #selected_features = model.get_booster().feature_names
+            
+            if hasattr(model, 'get_params'):
+                parameters = model.get_params()
+                print("parametros")
+            else:
+                parameters = None  # or any other way to handle this case
+
+            variables = {col: value for col, value in df.items()}
+
+            X_pred = pd.DataFrame(new_data_pca)  # Use the transformed data directly
+
+            prediction = model.predict(X_pred)
+            
+            # Optionally, you can store the prediction in the session
+            session['prediction'] = prediction.tolist()
+
+            print(session['prediction'])
+            print(prediction)
+
+            # Render the HTML template with variables, prediction, and model parameters
+            return render_template('CsvImportAllDatasetPCA.html', variables=variables, prediction=prediction, parameters=parameters, selected_model=selected_model)
+
+    return render_template("CsvImportAllDatasetPCA.html", parameters=parameters)
 
 
 @app.route('/FiveLevel/Maths', methods = ['GET', 'POST'])
