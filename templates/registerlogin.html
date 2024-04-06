@@ -46,12 +46,16 @@
             })
             .then(response => response.json())
             .then(data => {
+                // Remove all existing alerts
+                $('.alert').remove();
+
+                // Show success or error message
                 if (data.success) {
                     // Show success alert using Bootstrap
                     $('.main').prepend('<div class="alert alert-success" role="alert">' + data.message + '</div>');
                 } else {
                     // Show error alert using Bootstrap
-                    $('.main').prepend('<div class="alert alert-danger" role="alert">' + data.message + '</div>');
+                    $('.main').prepend('<div class="alert alert-danger" role="alert">' + data.error + '</div>');
                 }
             })
             .catch(error => console.error('Error:', error));
@@ -69,6 +73,10 @@
             })
             .then(response => response.json())
             .then(data => {
+                // Remove all existing alerts
+                $('.alert').remove();
+
+                // Show success or error message
                 if (data.success) {
                     // Redirect to the index page after successful login
                     window.location.href = '/index';
