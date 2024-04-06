@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for, session, Response
+from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for, session, Response, send_file
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -96,13 +96,18 @@ def login():
     password = data.get('password')
     user = db.session.query(User).filter_by(username=username).first()
 
-
-
     if user and user.check_password(password):
         login_user(user)  # Log in the user
         return jsonify({'success': True, 'message': 'Login successful'})
     else:
         return jsonify({'success': False, 'message': 'Invalid username or password'})
+    
+@app.route('/logout')
+def logout():
+    # Clear the session data
+    session.clear()
+    # Redirect the user to the login page or any other page
+    return redirect(url_for('hello'))
 
 
 
@@ -156,6 +161,13 @@ def record_audio(file_name, duration, sample_rate=44100, chunk_size=1024, format
 def recordAudio():
     record_audio("a.wav",6)
     return render_template('audio.html')
+
+@app.route('/play_audio')
+def playAudio():
+    # Path to your audio file
+    audio_file_path = 'D:/Dissertation/a.wav'
+    return send_file(audio_file_path, mimetype='audio/wav', as_attachment=True)
+
 
 @app.route('/predict', methods=['GET', 'POST'])
 def predictAudio():
@@ -507,6 +519,89 @@ def upload_and_show_data_smote_normalized():
             return render_template('CsvImportAllDatasetSmoteNormalized.html', variables=variables, prediction=prediction, parameters=parameters, selected_model=selected_model)
 
     return render_template("CsvImportAllDatasetSmoteNormalized.html", parameters=parameters)
+
+
+@app.route('/AllDataset/AllDatasetSmoteNormalizedCorrelated', methods=['GET', 'POST'])
+def upload_and_show_data_smote_normalized_correlated():
+    parameters = None  # Default value for parameters
+    if request.method == 'POST':
+        # Handle file upload
+        f = request.files.get('file')
+        if f and allowed_file(f.filename):
+            data_filename = secure_filename(f.filename)
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], data_filename)
+            f.save(file_path)
+            session['uploaded_data_file_path'] = file_path
+            model = None
+            selected_model = request.form.get('model')
+
+            print(selected_model)
+
+            if selected_model == 'svm':
+                model = joblib.load('Models/AllDatasetWithSmoteNormalizedCorrelated/SVM.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetWithSmoteNormalizedCorrelated/SVM_feature_names.csv")
+                print("aqui")
+            elif selected_model == 'nb':
+                model = joblib.load('Models/AllDatasetWithSmoteNormalizedCorrelated/Naive Bayes.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetWithSmoteNormalizedCorrelated/Naive Bayes_feature_names.csv")
+            elif selected_model == 'knn':
+                model = joblib.load('Models/AllDatasetWithSmoteNormalizedCorrelated/KNN.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetWithSmoteNormalizedCorrelated/kNN_feature_names.csv")
+            elif selected_model == 'adaboost':
+                model = joblib.load('Models/AllDatasetWithSmoteNormalizedCorrelated/AdaBoost.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetWithSmoteNormalizedCorrelated/AdaBoost_feature_names.csv")
+            elif selected_model == 'dt':
+                model = joblib.load('Models/AllDatasetWithSmoteNormalizedCorrelated/Decision Tree.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetWithSmoteNormalizedCorrelated/Decision Tree_feature_names.csv")
+            elif selected_model == 'xgboost':
+                model = joblib.load('Models/AllDatasetWithSmoteNormalizedCorrelated/XGBoost.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetWithSmoteNormalizedCorrelated/XGBoost_feature_names.csv")
+            elif selected_model == 'rf':
+                model = joblib.load('Models/AllDatasetWithSmoteNormalizedCorrelated/Random Forest.joblib')
+                feature_names = pd.read_csv("D:/Dissertation/Models/AllDatasetWithSmoteNormalizedCorrelated/Random Forest_feature_names.csv")
+            
+            # Read the CSV file
+            df = pd.read_csv(file_path)
+            
+            # Get the feature names from the model
+            # Extract the feature names from the DataFrame
+
+            print(feature_names)
+            selected_features = feature_names['Feature Names'].tolist()
+            print(selected_features)
+            #selected_features = model.get_booster().feature_names
+            
+            if hasattr(model, 'get_params'):
+                parameters = model.get_params()
+                print("parametros")
+            else:
+                parameters = None  # or any other way to handle this case
+
+            # Extract data for selected features from the first row of the DataFrame
+            data = df.loc[0, selected_features] 
+            print(data)
+            
+            # Convert the data to variables
+            variables = {col: value for col, value in data.items()}
+            
+            # Make prediction using the model and variables
+            # Note: You need to preprocess the data appropriately before making predictions
+            # For example, if the model expects numerical inputs, convert the variables to numerical format
+            
+            # Assuming you have preprocessed the variables appropriately and stored them in X_pred
+            X_pred = pd.DataFrame(data).transpose()  # Convert data to DataFrame and transpose it
+            prediction = model.predict(X_pred)
+            
+            # Optionally, you can store the prediction in the session
+            session['prediction'] = prediction.tolist()
+
+            print(session['prediction'])
+            print(prediction)
+
+            # Render the HTML template with variables, prediction, and model parameters
+            return render_template('CsvImportAllDatasetSmoteNormalizedCorrelated.html', variables=variables, prediction=prediction, parameters=parameters, selected_model=selected_model)
+
+    return render_template("CsvImportAllDatasetSmoteNormalizedCorrelated.html", parameters=parameters)
 
 
 @app.route('/AllDataset/AllDatasetXGBoost', methods=['GET', 'POST'])

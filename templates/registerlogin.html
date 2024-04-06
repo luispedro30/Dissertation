@@ -5,6 +5,8 @@
     <title>User Registration and Login</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/loginregister.css') }}">
+    <!-- Bootstrap CSS for styling alerts -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
     <div class="main">
@@ -26,6 +28,11 @@
         </form>
     </div>
 
+    <!-- Bootstrap JS for handling alerts -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
         document.getElementById('registerForm').addEventListener('submit', function(event) {
             event.preventDefault();
@@ -38,7 +45,15 @@
                 }
             })
             .then(response => response.json())
-            .then(data => alert(data.message))
+            .then(data => {
+                if (data.success) {
+                    // Show success alert using Bootstrap
+                    $('.main').prepend('<div class="alert alert-success" role="alert">' + data.message + '</div>');
+                } else {
+                    // Show error alert using Bootstrap
+                    $('.main').prepend('<div class="alert alert-danger" role="alert">' + data.message + '</div>');
+                }
+            })
             .catch(error => console.error('Error:', error));
         });
     
@@ -58,7 +73,8 @@
                     // Redirect to the index page after successful login
                     window.location.href = '/index';
                 } else {
-                    alert(data.message);
+                    // Show error alert using Bootstrap
+                    $('.main').prepend('<div class="alert alert-danger" role="alert">' + data.message + '</div>');
                 }
             })
             .catch(error => console.error('Error:', error));
