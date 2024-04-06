@@ -1,10 +1,68 @@
 <!DOCTYPE html>
 <!-- Created By CodingNepal - www.codingnepalweb.com -->
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="UTF-8">
-    <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='styles/form.css') }}">
-   </head>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/form.css') }}">
+  <style>
+    /* Center all content */
+    body {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Style for the header */
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    /* Style for the buttons */
+    form {
+      margin-bottom: 20px;
+    }
+
+    /* Style for the audio player section */
+    .audio-player {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Style for the prediction section */
+    .prediction-section {
+      text-align: center;
+    }
+
+    /* Style for the footer */
+    footer {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      text-align: center;
+      padding: 10px 0;
+      background-color: #f1f1f1;
+    }
+
+    /* Style for the logs */
+    .logs {
+      margin-bottom: 20px;
+    }
+
+    /* Style for green prediction */
+    .green-prediction {
+      color: green;
+    }
+
+    /* Style for red prediction */
+    .red-prediction {
+      color: red;
+    }
+  </style>
+</head>
 <body>
   <nav>
     <div class="navbar">
@@ -17,6 +75,7 @@
         </div>
         <ul class="links">
           <li><a href="/index">Home</a></li>
+          <li><a href="/audio">Real Time</a></li>
           <li>
             <a href="#">Data Analysis</a>
             <i class='bx bxs-chevron-down htmlcss-arrow arrow  '></i>
@@ -50,26 +109,73 @@
             </ul>
           </li>
           <li><a href="/Contacts">Contact Us</a></li>
+          <li><a href="/logout">Logout</a></li>
         </ul>
       </div>
     </div>
   </nav>
-<body>
-    <h1>Audio Recorder</h1>
-    <form action="/start" method="post">
-        <button type="submit">Start Recording</button>
-    </form>
-    <form action="/predict" method="post">
-        <button type="submit">Prediction</button>
-    </form>
+<h1>Audio Recorder</h1>
+<form id="recordForm" action="/start" method="post">
+    <button type="submit">Start Recording</button>
+</form>
 
-    <div class="prediction-section">
-        <h2>Prediction</h2>
-        <p>{{ prediction }}</p>
-      </div>
-      
-    <footer>
-        <p>&copy; 2024 Machine Learning. All rights reserved.</p>
-      </footer>
-    </body>
-    </html>
+<div class="logs" id="recordLogSection">
+  <!-- Log messages for recording will be displayed here -->
+</div>
+
+<div class="audio-player">
+    <h2>Listen to Audio</h2>
+    <audio controls>
+        <source src="{{ url_for('playAudio') }}" type="audio/wav">
+        Your browser does not support the audio element.
+    </audio>
+</div>    
+
+<form id="predictForm" action="/predict" method="post">
+    <button type="submit">Prediction</button>
+</form>
+
+<div class="logs" id="predictLogSection">
+  <!-- Log messages for predicting will be displayed here -->
+</div>
+
+<div class="prediction-section">
+  <h2>Prediction</h2>
+  <p class="{{ 'green-prediction' if prediction == 'Não tem doença de Parkinson' else 'red-prediction' }}">
+      {{ prediction }}
+  </p>
+</div>
+
+
+<footer>
+    <p>&copy; 2024 Machine Learning. All rights reserved.</p>
+</footer>
+
+<script>
+  // Function to update log messages for recording
+  function updateRecordLogs(message) {
+    var logSection = document.getElementById("recordLogSection");
+    var logMessage = document.createElement("p");
+    logMessage.textContent = message;
+    logSection.appendChild(logMessage);
+  }
+
+  // Function to update log messages for predicting
+  function updatePredictLogs(message) {
+    var logSection = document.getElementById("predictLogSection");
+    var logMessage = document.createElement("p");
+    logMessage.textContent = message;
+    logSection.appendChild(logMessage);
+  }
+
+  // Listen for form submissions and update logs accordingly
+  document.getElementById("recordForm").addEventListener("submit", function(event) {
+    updateRecordLogs("Recording started...");
+  });
+
+  document.getElementById("predictForm").addEventListener("submit", function(event) {
+    updatePredictLogs("Predicting...");
+  });
+</script>
+</body>
+</html>
