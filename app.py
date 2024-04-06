@@ -88,6 +88,8 @@ def register_user():
 
     return make_response(jsonify({'message': 'User registered successfully'}), 201)
 
+
+
 # Login route
 @app.route('/login', methods=['POST'])
 def login():
