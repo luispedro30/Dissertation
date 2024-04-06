@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for, session
+from flask import Flask, render_template, request, jsonify, make_response, redirect, url_for, session, Response
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -8,8 +8,16 @@ import os
 import joblib
 from os.path import join
 from werkzeug.utils import secure_filename
+import pyaudio
+import wave
+import featuresscript
+import predictscript
+
 
 app = Flask(__name__)
+
+stream = None
+frames = []
 
 
 UPLOAD_FOLDER = os.path.join('staticFiles', 'uploads')
@@ -98,6 +106,7 @@ def login():
 
 
 
+
 @app.route('/', methods=['GET', 'POST'])
 def hello():
     return render_template('registerlogin.html')
@@ -106,6 +115,57 @@ def hello():
 @login_required
 def index():
     return render_template('index.html')
+
+@app.route('/audio', methods=['GET', 'POST'])
+@login_required
+def audio():
+    return render_template('audio.html')
+
+def record_audio(file_name, duration, sample_rate=44100, chunk_size=1024, format=pyaudio.paInt16, channels=1):
+    audio = pyaudio.PyAudio()
+    
+    stream = audio.open(format=format,
+                        channels=channels,
+                        rate=sample_rate,
+                        input=True,
+                        frames_per_buffer=chunk_size)
+    
+    frames = []
+    num_frames = int(sample_rate * duration / chunk_size)
+
+    print("Recording...")
+    for i in range(num_frames):
+        data = stream.read(chunk_size)
+        frames.append(data)
+
+    print("Finished recording.")
+
+    stream.stop_stream()
+    stream.close()
+    audio.terminate()
+
+    # Save the recorded audio as a .wav file
+    wf = wave.open(file_name, 'wb')
+    wf.setnchannels(channels)
+    wf.setsampwidth(audio.get_sample_size(format))
+    wf.setframerate(sample_rate)
+    wf.writeframes(b''.join(frames))
+    wf.close()
+
+@app.route('/start', methods=['GET', 'POST'])
+def recordAudio():
+    record_audio("a.wav",6)
+    return render_template('audio.html')
+
+@app.route('/predict', methods=['GET', 'POST'])
+def predictAudio():
+    print("Predicting")
+    features = featuresscript.compute_features("a.wav")
+    prediction =  predictscript.predict(features)
+    print(prediction)
+
+    return render_template('audio.html', prediction=prediction)
+
 
 @app.route('/DataAnalysis/Geral', methods=['GET', 'POST'])
 def DataAnalysisMath():
@@ -534,7 +594,7 @@ def upload_and_show_data_xgboost():
 
 
 @app.route('/AllDataset/EnsembleStacking', methods=['GET', 'POST'])
-def upload_and_show_data_xgboost():
+def upload_and_show_data_ensemble():
     parameters = None  # Default value for parameters
     if request.method == 'POST':
         # Handle file upload
