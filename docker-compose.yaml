@@ -34,7 +34,7 @@ services:
     depends_on:
       - bd-ml
     environment:
-      - DB_URL=postgresql://postgres:postgres@bd-ml:5432/postgres
+      - DB_URL=postgresql://admin:postgres123@bd-ml:5432/bd
     volumes:
       - "D:/Dissertation/Data/backend:/app/backend"
     networks:

@@ -5,3 +5,16 @@ scipy
 numpy
 Werkzeug
 xgboost
+pyaudio
+librosa
+pywavelets
+nolds
+joblib
+wave
+sqlalchemy
+flask-sqlalchemy
+flask-login
+psycopg2-binary
+flask-smorest
+python-dotenv
+sqlalchemy

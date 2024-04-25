@@ -12,6 +12,8 @@ import pyaudio
 import wave
 import featuresscript
 import predictscript
+import csv
+
 
 
 app = Flask(__name__)
@@ -175,6 +177,15 @@ def playAudio():
 def predictAudio():
     print("Predicting")
     features = featuresscript.compute_features("a.wav")
+
+    # Save features as CSV
+    output_file = "features.csv"
+    with open(output_file, 'w', newline='') as csvfile:
+        fieldnames = list(features.keys())
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerow(features)
+
     prediction =  predictscript.predict(features)
     print(prediction)
 
