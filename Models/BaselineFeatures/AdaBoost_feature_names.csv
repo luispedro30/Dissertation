@@ -1,0 +1,23 @@
+Feature Names
+gender
+PPE
+DFA
+RPDE
+numPulses
+numPeriodsPulses
+meanPeriodPulses
+stdDevPeriodPulses
+locPctJitter
+locAbsJitter
+rapJitter
+ppq5Jitter
+ddpJitter
+locShimmer
+locDbShimmer
+apq3Shimmer
+apq5Shimmer
+apq11Shimmer
+ddaShimmer
+meanAutoCorrHarmonicity
+meanNoiseToHarmHarmonicity
+meanHarmToNoiseHarmonicity
