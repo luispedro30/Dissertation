@@ -11,10 +11,9 @@ pywavelets
 nolds
 joblib
 wave
-sqlalchemy
-flask-sqlalchemy
+flask-sqlalchemy==3.1.1
+sqlalchemy==2.0.29
 flask-login
 psycopg2-binary
 flask-smorest
 python-dotenv
-sqlalchemy

@@ -1,0 +1,1316 @@
+\glsdefs@newdocentry{AUC}%
+{%
+name={\acronymfont {\glsentryshort {AUC}}},%
+sort={AUC},%
+type={acronym},%
+first={AUC},%
+firstplural={AUCs},%
+text={AUC},%
+plural={AUCs},%
+description={Valor da área sob a curva ROC},%
+descriptionplural={Valor da área sob a curva ROC},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Valor da área sob a curva ROC},%
+longplural={Valor da área sob a curva ROCs},%
+short={AUC},%
+shortplural={AUCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{AdaBoost}%
+{%
+name={\acronymfont {\glsentryshort {AdaBoost}}},%
+sort={AdaBoost},%
+type={acronym},%
+first={AdaBoost},%
+firstplural={AdaBoosts},%
+text={AdaBoost},%
+plural={AdaBoosts},%
+description={\textit {Adaptative Boosting}},%
+descriptionplural={\textit {Adaptative Boosting}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Adaptative Boosting}},%
+longplural={\protect \textit  {Adaptative Boosting}s},%
+short={AdaBoost},%
+shortplural={AdaBoosts},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ANOVA}%
+{%
+name={\acronymfont {\glsentryshort {ANOVA}}},%
+sort={ANOVA},%
+type={acronym},%
+first={ANOVA},%
+firstplural={ANOVAs},%
+text={ANOVA},%
+plural={ANOVAs},%
+description={\textit {Analysis of Variance}},%
+descriptionplural={\textit {Analysis of Variance}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Analysis of Variance}},%
+longplural={\protect \textit  {Analysis of Variance}s},%
+short={ANOVA},%
+shortplural={ANOVAs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{BT}%
+{%
+name={\acronymfont {\glsentryshort {BT}}},%
+sort={BT},%
+type={acronym},%
+first={BT},%
+firstplural={BTs},%
+text={BT},%
+plural={BTs},%
+description={\textit {Bagged Tree}},%
+descriptionplural={\textit {Bagged Tree}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Bagged Tree}},%
+longplural={\protect \textit  {Bagged Tree}s},%
+short={BT},%
+shortplural={BTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{CRISP-DM}%
+{%
+name={\acronymfont {\glsentryshort {CRISP-DM}}},%
+sort={CRISP-DM},%
+type={acronym},%
+first={CRISP-DM},%
+firstplural={CRISP-DMs},%
+text={CRISP-DM},%
+plural={CRISP-DMs},%
+description={\textit {Cross Industry Standard Process for Data Mining}},%
+descriptionplural={\textit {Cross Industry Standard Process for Data Mining}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Cross Industry Standard Process for Data Mining}},%
+longplural={\protect \textit  {Cross Industry Standard Process for Data Mining}s},%
+short={CRISP-DM},%
+shortplural={CRISP-DMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{DBS}%
+{%
+name={\acronymfont {\glsentryshort {DBS}}},%
+sort={DBS},%
+type={acronym},%
+first={DBS},%
+firstplural={DBSs},%
+text={DBS},%
+plural={DBSs},%
+description={\textit {Deep Brain Stimulation}},%
+descriptionplural={\textit {Deep Brain Stimulation}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Deep Brain Stimulation}},%
+longplural={\protect \textit  {Deep Brain Stimulation}s},%
+short={DBS},%
+shortplural={DBSs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{DP}%
+{%
+name={\acronymfont {\glsentryshort {DP}}},%
+sort={DP},%
+type={acronym},%
+first={DP},%
+firstplural={DPs},%
+text={DP},%
+plural={DPs},%
+description={Doença de \textit {Parkinson}},%
+descriptionplural={Doença de \textit {Parkinson}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Doença de \protect \textit  {Parkinson}},%
+longplural={Doença de \protect \textit  {Parkinson}s},%
+short={DP},%
+shortplural={DPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{DT}%
+{%
+name={\acronymfont {\glsentryshort {DT}}},%
+sort={DT},%
+type={acronym},%
+first={DT},%
+firstplural={DTs},%
+text={DT},%
+plural={DTs},%
+description={\textit {Decision Tree}},%
+descriptionplural={\textit {Decision Tree}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Decision Tree}},%
+longplural={\protect \textit  {Decision Tree}s},%
+short={DT},%
+shortplural={DTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ECFS}%
+{%
+name={\acronymfont {\glsentryshort {ECFS}}},%
+sort={ECFS},%
+type={acronym},%
+first={ECFS},%
+firstplural={ECFSs},%
+text={ECFS},%
+plural={ECFSs},%
+description={\textit {Eigenvector Centrality Feature Selection}},%
+descriptionplural={\textit {Eigenvector Centrality Feature Selection}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Eigenvector Centrality Feature Selection}},%
+longplural={\protect \textit  {Eigenvector Centrality Feature Selection}s},%
+short={ECFS},%
+shortplural={ECFSs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{EMG}%
+{%
+name={\acronymfont {\glsentryshort {EMG}}},%
+sort={EMG},%
+type={acronym},%
+first={EMG},%
+firstplural={EMGs},%
+text={EMG},%
+plural={EMGs},%
+description={Eletromiografia},%
+descriptionplural={Eletromiografia},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Eletromiografia},%
+longplural={Eletromiografias},%
+short={EMG},%
+shortplural={EMGs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{estg}%
+{%
+name={\acronymfont {\glsentryshort {estg}}},%
+sort={ESTG},%
+type={acronym},%
+first={ESTG},%
+firstplural={ESTGs},%
+text={ESTG},%
+plural={ESTGs},%
+description={Escola Superior de Tecnlogia e Gestão},%
+descriptionplural={Escola Superior de Tecnlogia e Gestão},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Escola Superior de Tecnlogia e Gestão},%
+longplural={Escola Superior de Tecnlogia e Gestãos},%
+short={ESTG},%
+shortplural={ESTGs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{FN}%
+{%
+name={\acronymfont {\glsentryshort {FN}}},%
+sort={FN},%
+type={acronym},%
+first={FN},%
+firstplural={FNs},%
+text={FN},%
+plural={FNs},%
+description={Falso Negativo},%
+descriptionplural={Falso Negativo},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Falso Negativo},%
+longplural={Falso Negativos},%
+short={FN},%
+shortplural={FNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{FP}%
+{%
+name={\acronymfont {\glsentryshort {FP}}},%
+sort={FP},%
+type={acronym},%
+first={FP},%
+firstplural={FPs},%
+text={FP},%
+plural={FPs},%
+description={Falso Positivo},%
+descriptionplural={Falso Positivo},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Falso Positivo},%
+longplural={Falso Positivos},%
+short={FP},%
+shortplural={FPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{GB}%
+{%
+name={\acronymfont {\glsentryshort {GB}}},%
+sort={GB},%
+type={acronym},%
+first={GB},%
+firstplural={GBs},%
+text={GB},%
+plural={GBs},%
+description={\textit {Gradient Boosting}},%
+descriptionplural={\textit {Gradient Boosting}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Gradient Boosting}},%
+longplural={\protect \textit  {Gradient Boosting}s},%
+short={GB},%
+shortplural={GBs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{GUI}%
+{%
+name={\acronymfont {\glsentryshort {GUI}}},%
+sort={GUI},%
+type={acronym},%
+first={GUI},%
+firstplural={GUIs},%
+text={GUI},%
+plural={GUIs},%
+description={\textit {Graphical User Interface}},%
+descriptionplural={\textit {Graphical User Interface}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Graphical User Interface}},%
+longplural={\protect \textit  {Graphical User Interface}s},%
+short={GUI},%
+shortplural={GUIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{IA}%
+{%
+name={\acronymfont {\glsentryshort {IA}}},%
+sort={IA},%
+type={acronym},%
+first={IA},%
+firstplural={IAs},%
+text={IA},%
+plural={IAs},%
+description={Inteligência Artificial},%
+descriptionplural={Inteligência Artificial},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Inteligência Artificial},%
+longplural={Inteligência Artificials},%
+short={IA},%
+shortplural={IAs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LD}%
+{%
+name={\acronymfont {\glsentryshort {LD}}},%
+sort={LD},%
+type={acronym},%
+first={LD},%
+firstplural={LDs},%
+text={LD},%
+plural={LDs},%
+description={\textit {Linear Descriminant}},%
+descriptionplural={\textit {Linear Descriminant}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Linear Descriminant}},%
+longplural={\protect \textit  {Linear Descriminant}s},%
+short={LD},%
+shortplural={LDs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{L-Dopa}%
+{%
+name={\acronymfont {\glsentryshort {L-Dopa}}},%
+sort={L-Dopa},%
+type={acronym},%
+first={L-Dopa},%
+firstplural={L-Dopas},%
+text={L-Dopa},%
+plural={L-Dopas},%
+description={\textit {Levodopa}},%
+descriptionplural={\textit {Levodopa}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Levodopa}},%
+longplural={\protect \textit  {Levodopa}s},%
+short={L-Dopa},%
+shortplural={L-Dopas},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LR}%
+{%
+name={\acronymfont {\glsentryshort {LR}}},%
+sort={LR},%
+type={acronym},%
+first={LR},%
+firstplural={LRs},%
+text={LR},%
+plural={LRs},%
+description={\textit {Logistic Regression}},%
+descriptionplural={\textit {Logistic Regression}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Logistic Regression}},%
+longplural={\protect \textit  {Logistic Regression}s},%
+short={LR},%
+shortplural={LRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{LOSO}%
+{%
+name={\acronymfont {\glsentryshort {LOSO}}},%
+sort={LOSO},%
+type={acronym},%
+first={LOSO},%
+firstplural={LOSOs},%
+text={LOSO},%
+plural={LOSOs},%
+description={\textit {Leave one subject out}},%
+descriptionplural={\textit {Leave one subject out}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Leave one subject out}},%
+longplural={\protect \textit  {Leave one subject out}s},%
+short={LOSO},%
+shortplural={LOSOs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MAE}%
+{%
+name={\acronymfont {\glsentryshort {MAE}}},%
+sort={MAE},%
+type={acronym},%
+first={MAE},%
+firstplural={MAEs},%
+text={MAE},%
+plural={MAEs},%
+description={\textit {Mean Average Error}},%
+descriptionplural={\textit {Mean Average Error}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Mean Average Error}},%
+longplural={\protect \textit  {Mean Average Error}s},%
+short={MAE},%
+shortplural={MAEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MAMa}%
+{%
+name={\acronymfont {\glsentryshort {MAMa}}},%
+sort={MAMa},%
+type={acronym},%
+first={MAMa},%
+firstplural={MAMas},%
+text={MAMa},%
+plural={MAMas},%
+description={\textit {Minimum Average maximum Tree}},%
+descriptionplural={\textit {Minimum Average maximum Tree}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Minimum Average maximum Tree}},%
+longplural={\protect \textit  {Minimum Average maximum Tree}s},%
+short={MAMa},%
+shortplural={MAMas},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ML}%
+{%
+name={\acronymfont {\glsentryshort {ML}}},%
+sort={ML},%
+type={acronym},%
+first={ML},%
+firstplural={MLs},%
+text={ML},%
+plural={MLs},%
+description={\textit {Machine Learning}},%
+descriptionplural={\textit {Machine Learning}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Machine Learning}},%
+longplural={\protect \textit  {Machine Learning}s},%
+short={ML},%
+shortplural={MLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MLP}%
+{%
+name={\acronymfont {\glsentryshort {MLP}}},%
+sort={MLP},%
+type={acronym},%
+first={MLP},%
+firstplural={MLPs},%
+text={MLP},%
+plural={MLPs},%
+description={\textit {Multilayer Perceptron}},%
+descriptionplural={\textit {Multilayer Perceptron}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Multilayer Perceptron}},%
+longplural={\protect \textit  {Multilayer Perceptron}s},%
+short={MLP},%
+shortplural={MLPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MRI}%
+{%
+name={\acronymfont {\glsentryshort {MRI}}},%
+sort={MRI},%
+type={acronym},%
+first={MRI},%
+firstplural={MRIs},%
+text={MRI},%
+plural={MRIs},%
+description={\textit {Magnetic resonance imaging}},%
+descriptionplural={\textit {Magnetic resonance imaging}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Magnetic resonance imaging}},%
+longplural={\protect \textit  {Magnetic resonance imaging}s},%
+short={MRI},%
+shortplural={MRIs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{mRMR}%
+{%
+name={\acronymfont {\glsentryshort {mRMR}}},%
+sort={mRMR},%
+type={acronym},%
+first={mRMR},%
+firstplural={mRMRs},%
+text={mRMR},%
+plural={mRMRs},%
+description={\textit {Minimum Redundancy-maximum relevance}},%
+descriptionplural={\textit {Minimum Redundancy-maximum relevance}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Minimum Redundancy-maximum relevance}},%
+longplural={\protect \textit  {Minimum Redundancy-maximum relevance}s},%
+short={mRMR},%
+shortplural={mRMRs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{MSE}%
+{%
+name={\acronymfont {\glsentryshort {MSE}}},%
+sort={MSE},%
+type={acronym},%
+first={MSE},%
+firstplural={MSEs},%
+text={MSE},%
+plural={MSEs},%
+description={\textit {Mean Squared Error}},%
+descriptionplural={\textit {Mean Squared Error}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Mean Squared Error}},%
+longplural={\protect \textit  {Mean Squared Error}s},%
+short={MSE},%
+shortplural={MSEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NB}%
+{%
+name={\acronymfont {\glsentryshort {NB}}},%
+sort={NB},%
+type={acronym},%
+first={NB},%
+firstplural={NBs},%
+text={NB},%
+plural={NBs},%
+description={\textit {Naive Bayes}},%
+descriptionplural={\textit {Naive Bayes}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Naive Bayes}},%
+longplural={\protect \textit  {Naive Bayes}s},%
+short={NB},%
+shortplural={NBs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{NN}%
+{%
+name={\acronymfont {\glsentryshort {NN}}},%
+sort={NN},%
+type={acronym},%
+first={NN},%
+firstplural={NNs},%
+text={NN},%
+plural={NNs},%
+description={\textit {K-Nearest Neighbors}},%
+descriptionplural={\textit {K-Nearest Neighbors}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {K-Nearest Neighbors}},%
+longplural={\protect \textit  {K-Nearest Neighbors}s},%
+short={NN},%
+shortplural={NNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{PCA}%
+{%
+name={\acronymfont {\glsentryshort {PCA}}},%
+sort={PCA},%
+type={acronym},%
+first={PCA},%
+firstplural={PCAs},%
+text={PCA},%
+plural={PCAs},%
+description={\textit {Principal Component Analysis}},%
+descriptionplural={\textit {Principal Component Analysis}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Principal Component Analysis}},%
+longplural={\protect \textit  {Principal Component Analysis}s},%
+short={PCA},%
+shortplural={PCAs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RBF}%
+{%
+name={\acronymfont {\glsentryshort {RBF}}},%
+sort={RBF},%
+type={acronym},%
+first={RBF},%
+firstplural={RBFs},%
+text={RBF},%
+plural={RBFs},%
+description={\textit {Radial Based Function}},%
+descriptionplural={\textit {Radial Based Function}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Radial Based Function}},%
+longplural={\protect \textit  {Radial Based Function}s},%
+short={RBF},%
+shortplural={RBFs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RF}%
+{%
+name={\acronymfont {\glsentryshort {RF}}},%
+sort={RF},%
+type={acronym},%
+first={RF},%
+firstplural={RFs},%
+text={RF},%
+plural={RFs},%
+description={\textit {Random Forest}},%
+descriptionplural={\textit {Random Forest}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Random Forest}},%
+longplural={\protect \textit  {Random Forest}s},%
+short={RF},%
+shortplural={RFs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RFE}%
+{%
+name={\acronymfont {\glsentryshort {RFE}}},%
+sort={RFE},%
+type={acronym},%
+first={RFE},%
+firstplural={RFEs},%
+text={RFE},%
+plural={RFEs},%
+description={\textit {Recursive Feature Elimination}},%
+descriptionplural={\textit {Recursive Feature Elimination}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Recursive Feature Elimination}},%
+longplural={\protect \textit  {Recursive Feature Elimination}s},%
+short={RFE},%
+shortplural={RFEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RL}%
+{%
+name={\acronymfont {\glsentryshort {RL}}},%
+sort={RL},%
+type={acronym},%
+first={RL},%
+firstplural={RLs},%
+text={RL},%
+plural={RLs},%
+description={\textit {Reinforcement Learning}},%
+descriptionplural={\textit {Reinforcement Learning}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Reinforcement Learning}},%
+longplural={\protect \textit  {Reinforcement Learning}s},%
+short={RL},%
+shortplural={RLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{RMSE}%
+{%
+name={\acronymfont {\glsentryshort {RMSE}}},%
+sort={RMSE},%
+type={acronym},%
+first={RMSE},%
+firstplural={RMSEs},%
+text={RMSE},%
+plural={RMSEs},%
+description={\textit {Root Mean Squared Error}},%
+descriptionplural={\textit {Root Mean Squared Error}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Root Mean Squared Error}},%
+longplural={\protect \textit  {Root Mean Squared Error}s},%
+short={RMSE},%
+shortplural={RMSEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{ROC}%
+{%
+name={\acronymfont {\glsentryshort {ROC}}},%
+sort={ROC},%
+type={acronym},%
+first={ROC},%
+firstplural={ROCs},%
+text={ROC},%
+plural={ROCs},%
+description={\textit {Receiver Operating Characteristics}},%
+descriptionplural={\textit {Receiver Operating Characteristics}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Receiver Operating Characteristics}},%
+longplural={\protect \textit  {Receiver Operating Characteristics}s},%
+short={ROC},%
+shortplural={ROCs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SL}%
+{%
+name={\acronymfont {\glsentryshort {SL}}},%
+sort={SL},%
+type={acronym},%
+first={SL},%
+firstplural={SLs},%
+text={SL},%
+plural={SLs},%
+description={\textit {Supervised Learning}},%
+descriptionplural={\textit {Supervised Learning}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Supervised Learning}},%
+longplural={\protect \textit  {Supervised Learning}s},%
+short={SL},%
+shortplural={SLs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SMOTE}%
+{%
+name={\acronymfont {\glsentryshort {SMOTE}}},%
+sort={SMOTE},%
+type={acronym},%
+first={SMOTE},%
+firstplural={SMOTEs},%
+text={SMOTE},%
+plural={SMOTEs},%
+description={\textit {Synthetic Minority Oversampling Technique}},%
+descriptionplural={\textit {Synthetic Minority Oversampling Technique}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Synthetic Minority Oversampling Technique}},%
+longplural={\protect \textit  {Synthetic Minority Oversampling Technique}s},%
+short={SMOTE},%
+shortplural={SMOTEs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SVD}%
+{%
+name={\acronymfont {\glsentryshort {SVD}}},%
+sort={SVD},%
+type={acronym},%
+first={SVD},%
+firstplural={SVDs},%
+text={SVD},%
+plural={SVDs},%
+description={\textit {Singular Value Decomposition}},%
+descriptionplural={\textit {Singular Value Decomposition}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Singular Value Decomposition}},%
+longplural={\protect \textit  {Singular Value Decomposition}s},%
+short={SVD},%
+shortplural={SVDs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{SVM}%
+{%
+name={\acronymfont {\glsentryshort {SVM}}},%
+sort={SVM},%
+type={acronym},%
+first={SVM},%
+firstplural={SVMs},%
+text={SVM},%
+plural={SVMs},%
+description={\textit {Support Vector Machine}},%
+descriptionplural={\textit {Support Vector Machine}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Support Vector Machine}},%
+longplural={\protect \textit  {Support Vector Machine}s},%
+short={SVM},%
+shortplural={SVMs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{TAC}%
+{%
+name={\acronymfont {\glsentryshort {TAC}}},%
+sort={TAC},%
+type={acronym},%
+first={TAC},%
+firstplural={TACs},%
+text={TAC},%
+plural={TACs},%
+description={Tomografia Computorizada},%
+descriptionplural={Tomografia Computorizada},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Tomografia Computorizada},%
+longplural={Tomografia Computorizadas},%
+short={TAC},%
+shortplural={TACs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{TQWT}%
+{%
+name={\acronymfont {\glsentryshort {TQWT}}},%
+sort={TQWT},%
+type={acronym},%
+first={TQWT},%
+firstplural={TQWTs},%
+text={TQWT},%
+plural={TQWTs},%
+description={\textit {Tunable wavelet transform approach}},%
+descriptionplural={\textit {Tunable wavelet transform approach}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Tunable wavelet transform approach}},%
+longplural={\protect \textit  {Tunable wavelet transform approach}s},%
+short={TQWT},%
+shortplural={TQWTs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{UL}%
+{%
+name={\acronymfont {\glsentryshort {UL}}},%
+sort={UL},%
+type={acronym},%
+first={UL},%
+firstplural={ULs},%
+text={UL},%
+plural={ULs},%
+description={\textit {Unsupervised Learning}},%
+descriptionplural={\textit {Unsupervised Learning}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Unsupervised Learning}},%
+longplural={\protect \textit  {Unsupervised Learning}s},%
+short={UL},%
+shortplural={ULs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{VIF}%
+{%
+name={\acronymfont {\glsentryshort {VIF}}},%
+sort={VIF},%
+type={acronym},%
+first={VIF},%
+firstplural={VIFs},%
+text={VIF},%
+plural={VIFs},%
+description={Variância Inflacionária de Fator},%
+descriptionplural={Variância Inflacionária de Fator},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Variância Inflacionária de Fator},%
+longplural={Variância Inflacionária de Fators},%
+short={VIF},%
+shortplural={VIFs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{VN}%
+{%
+name={\acronymfont {\glsentryshort {VN}}},%
+sort={VN},%
+type={acronym},%
+first={VN},%
+firstplural={VNs},%
+text={VN},%
+plural={VNs},%
+description={Verdadeiro Negativo},%
+descriptionplural={Verdadeiro Negativo},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Verdadeiro Negativo},%
+longplural={Verdadeiro Negativos},%
+short={VN},%
+shortplural={VNs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{VP}%
+{%
+name={\acronymfont {\glsentryshort {VP}}},%
+sort={VP},%
+type={acronym},%
+first={VP},%
+firstplural={VPs},%
+text={VP},%
+plural={VPs},%
+description={Verdadeiro Positivo},%
+descriptionplural={Verdadeiro Positivo},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={Verdadeiro Positivo},%
+longplural={Verdadeiro Positivos},%
+short={VP},%
+shortplural={VPs},%
+counter={page},%
+parent={},%
+%
+}%
+
+\glsdefs@newdocentry{XGBoost}%
+{%
+name={\acronymfont {\glsentryshort {XGBoost}}},%
+sort={XGBoost},%
+type={acronym},%
+first={XGBoost},%
+firstplural={XGBoosts},%
+text={XGBoost},%
+plural={XGBoosts},%
+description={\textit {Extreme Gradient Boost}},%
+descriptionplural={\textit {Extreme Gradient Boost}},%
+symbol={\relax },%
+symbolplural={\relax },%
+user1={},%
+user2={},%
+user3={},%
+user4={},%
+user5={},%
+user6={},%
+long={\protect \textit  {Extreme Gradient Boost}},%
+longplural={\protect \textit  {Extreme Gradient Boost}s},%
+short={XGBoost},%
+shortplural={XGBoosts},%
+counter={page},%
+parent={},%
+%
+}%
+
